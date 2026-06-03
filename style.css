@@ -97,7 +97,8 @@ button.selected { background-color: #28a745; }
 .selection-btn.selected { color: black; }
 
 /* Page 4 layout */
-#page-4 .nav-bar {
+#page-7 .nav-bar,
+#page-13 .nav-bar {
     justify-content: flex-start;
 }
 

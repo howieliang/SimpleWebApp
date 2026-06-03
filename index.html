@@ -14,15 +14,15 @@
                 <p>Select an option below to begin.</p>
             </div>
             <div class="menu-list">
-                <button onclick="navigateTo(2)">Start</button>
-                <button disabled>Reserved 1</button>
+                <button onclick="navigateTo(2)">Game 1</button>
+                <button onclick="navigateTo(8)">Game 2</button>
                 <button disabled>Reserved 2</button>
             </div>
         </section>
 
         <section id="page-2" class="page">
             <div class="page-header">
-                <h2>Page 2 Title</h2>
+                <h2>Game 1 (1 of 5)</h2>
                 <p>Select an option below.</p>
             </div>
             <div class="content-area">
@@ -36,7 +36,7 @@
 
         <section id="page-3" class="page">
             <div class="page-header">
-                <h2>Page 3 Title</h2>
+                <h2>Game 1 (2 of 5)</h2>
                 <p>Select an option below.</p>
             </div>
             <div class="content-area">
@@ -44,14 +44,136 @@
             </div>
             <div class="nav-bar">
                 <button onclick="navigateTo(1)">Return</button>
-                <button onclick="goNext(3, 4)">Finish</button>
+                <button onclick="goNext(3, 4)">Next</button>
             </div>
         </section>
 
         <section id="page-4" class="page">
+            <div class="page-header">
+                <h2>Game 1 (3 of 5)</h2>
+                <p>Select an option below.</p>
+            </div>
             <div class="content-area">
-                <h2>Results</h2>
+                <div class="grid-container" id="grid-p4"></div>
+            </div>
+            <div class="nav-bar">
+                <button onclick="navigateTo(1)">Return</button>
+                <button onclick="goNext(4, 5)">Next</button>
+            </div>
+        </section>
+
+        <section id="page-5" class="page">
+            <div class="page-header">
+                <h2>Game 1 (4 of 5)</h2>
+                <p>Select an option below.</p>
+            </div>
+            <div class="content-area">
+                <div class="grid-container" id="grid-p5"></div>
+            </div>
+            <div class="nav-bar">
+                <button onclick="navigateTo(1)">Return</button>
+                <button onclick="goNext(5, 6)">Next</button>
+            </div>
+        </section>
+
+        <section id="page-6" class="page">
+            <div class="page-header">
+                <h2>Game 1 (5 of 5)</h2>
+                <p>Select an option below.</p>
+            </div>
+            <div class="content-area">
+                <div class="grid-container" id="grid-p6"></div>
+            </div>
+            <div class="nav-bar">
+                <button onclick="navigateTo(1)">Return</button>
+                <button onclick="goNext(6, 7)">Finish</button>
+            </div>
+        </section>
+
+        <section id="page-7" class="page">
+            <div class="content-area">
+                <h2>Game 1 Results</h2>
                 <div id="result-display"></div>
+            </div>
+            <div class="nav-bar">
+                <button onclick="navigateTo(1)">Return</button>
+            </div>
+        </section>
+
+        <section id="page-8" class="page">
+            <div class="page-header">
+                <h2>Game 2 (1 of 5)</h2>
+                <p>Select an option below.</p>
+            </div>
+            <div class="content-area">
+                <div class="grid-container" id="grid-p8"></div>
+            </div>
+            <div class="nav-bar">
+                <button onclick="navigateTo(1)">Return</button>
+                <button onclick="goNext(8, 9)">Next</button>
+            </div>
+        </section>
+
+        <section id="page-9" class="page">
+            <div class="page-header">
+                <h2>Game 2 (2 of 5)</h2>
+                <p>Select an option below.</p>
+            </div>
+            <div class="content-area">
+                <div class="grid-container" id="grid-p9"></div>
+            </div>
+            <div class="nav-bar">
+                <button onclick="navigateTo(1)">Return</button>
+                <button onclick="goNext(9, 10)">Next</button>
+            </div>
+        </section>
+
+        <section id="page-10" class="page">
+            <div class="page-header">
+                <h2>Game 2 (3 of 5)</h2>
+                <p>Select an option below.</p>
+            </div>
+            <div class="content-area">
+                <div class="grid-container" id="grid-p10"></div>
+            </div>
+            <div class="nav-bar">
+                <button onclick="navigateTo(1)">Return</button>
+                <button onclick="goNext(10, 11)">Next</button>
+            </div>
+        </section>
+
+        <section id="page-11" class="page">
+            <div class="page-header">
+                <h2>Game 2 (4 of 5)</h2>
+                <p>Select an option below.</p>
+            </div>
+            <div class="content-area">
+                <div class="grid-container" id="grid-p11"></div>
+            </div>
+            <div class="nav-bar">
+                <button onclick="navigateTo(1)">Return</button>
+                <button onclick="goNext(11, 12)">Next</button>
+            </div>
+        </section>
+
+        <section id="page-12" class="page">
+            <div class="page-header">
+                <h2>Game 2 (5 of 5)</h2>
+                <p>Select an option below.</p>
+            </div>
+            <div class="content-area">
+                <div class="grid-container" id="grid-p12"></div>
+            </div>
+            <div class="nav-bar">
+                <button onclick="navigateTo(1)">Return</button>
+                <button onclick="goNext(12, 13)">Finish</button>
+            </div>
+        </section>
+
+        <section id="page-13" class="page">
+            <div class="content-area">
+                <h2>Game 2 Results</h2>
+                <div id="result-display-2"></div>
             </div>
             <div class="nav-bar">
                 <button onclick="navigateTo(1)">Return</button>
