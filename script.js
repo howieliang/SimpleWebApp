@@ -25,7 +25,7 @@ function createGrids() {
                 const imgNum = p === 2 ? i : i + 10;
                 const btn = document.createElement('button');
                 btn.style.backgroundImage = `url('img/${String(imgNum).padStart(3, '0')}.png')`;
-                btn.onclick = () => new Audio(`audio/${String(imgNum).padStart(3, '0')}.mp4`).play();
+                btn.onclick = () => new Audio(`audio/${String(imgNum).padStart(3, '0')}.mp3`).play();
                 container.appendChild(btn);
             }
             // Selection button — no image
