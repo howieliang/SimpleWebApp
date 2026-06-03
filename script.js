@@ -1,11 +1,56 @@
-let selections = { page2: null, page3: null, page4: null, page5: null, page6: null, page8: null, page9: null, page10: null, page11: null, page12: null };
+// Cookie helpers
+function setCookie(name, value) {
+    document.cookie = `${name}=${encodeURIComponent(value)};path=/;max-age=31536000`;
+}
+function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return match ? decodeURIComponent(match[1]) : '';
+}
+function saveUsername() {
+    setCookie('username', document.getElementById('username-input').value);
+}
+
+// State
+const GRID_PAGES = [2,3,4,5,6,8,9,10,11,12];
+let selections  = {};
+let elapsedTimes = {};
+let pageStartTime = null;
+let game1StartTime = null;
+let game2StartTime = null;
+GRID_PAGES.forEach(p => { selections[`page${p}`] = null; elapsedTimes[`page${p}`] = null; });
+
+function formatElapsed(ms) {
+    if (ms === null) return '—';
+    return `${ms} ms`;
+}
+
+function formatTimestamp(date) {
+    if (!date) return '—';
+    const h = String(date.getHours()).padStart(2, '0');
+    const m = String(date.getMinutes()).padStart(2, '0');
+    const s = String(date.getSeconds()).padStart(2, '0');
+    const ms = String(date.getMilliseconds()).padStart(3, '0');
+    return `${h}:${m}:${s}.${ms}`;
+}
+
+function getUsername() {
+    return document.getElementById('username-input').value || getCookie('username') || 'Unknown';
+}
 
 function navigateTo(pageNumber) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(`page-${pageNumber}`).classList.add('active');
-    if(pageNumber === 7) displayResults();
-    if(pageNumber === 13) displayResults2();
-    if(pageNumber === 1) resetGame();
+    if (GRID_PAGES.includes(pageNumber)) pageStartTime = Date.now();
+    if (pageNumber === 7) displayResults();
+    if (pageNumber === 13) displayResults2();
+    if (pageNumber === 1) resetGame();
+}
+
+function startGame(pageNumber) {
+    saveUsername();
+    if (pageNumber === 2) game1StartTime = new Date();
+    if (pageNumber === 8) game2StartTime = new Date();
+    navigateTo(pageNumber);
 }
 
 function goNext(from, to) {
@@ -34,6 +79,7 @@ function buildGrid(p, imgOffset) {
             container.querySelectorAll('.selection-btn').forEach(b => b.classList.remove('selected'));
             sBtn.classList.add('selected');
             selections[`page${p}`] = `s${row + 1}`;
+            elapsedTimes[`page${p}`] = pageStartTime ? Date.now() - pageStartTime : null;
         };
         container.appendChild(sBtn);
     }
@@ -45,31 +91,45 @@ function createGrids() {
 }
 
 function displayResults() {
+    const name = getUsername();
+    const pages = [2,3,4,5,6];
+    const answers = pages.map(p => selections[`page${p}`] || 'None');
+    const times   = pages.map(p => elapsedTimes[`page${p}`]);
+    dbSave(name, 1, game1StartTime, answers, times);
     const display = document.getElementById('result-display');
-    display.innerHTML = `
-        <p>Round 1: <strong>${selections.page2 || 'None'}</strong></p>
-        <p>Round 2: <strong>${selections.page3 || 'None'}</strong></p>
-        <p>Round 3: <strong>${selections.page4 || 'None'}</strong></p>
-        <p>Round 4: <strong>${selections.page5 || 'None'}</strong></p>
-        <p>Round 5: <strong>${selections.page6 || 'None'}</strong></p>
-    `;
+    display.innerHTML =
+        `<p><strong>Player:</strong> ${name}</p>` +
+        `<p><strong>Started:</strong> ${formatTimestamp(game1StartTime)}</p>` +
+        pages.map((p, i) =>
+            `<p>Round ${i+1}: <strong>${answers[i]}</strong> &nbsp; ${formatElapsed(times[i])}</p>`
+        ).join('');
 }
 
 function displayResults2() {
+    const name = getUsername();
+    const pages = [8,9,10,11,12];
+    const answers = pages.map(p => selections[`page${p}`] || 'None');
+    const times   = pages.map(p => elapsedTimes[`page${p}`]);
+    dbSave(name, 2, game2StartTime, answers, times);
     const display = document.getElementById('result-display-2');
-    display.innerHTML = `
-        <p>Round 1: <strong>${selections.page8 || 'None'}</strong></p>
-        <p>Round 2: <strong>${selections.page9 || 'None'}</strong></p>
-        <p>Round 3: <strong>${selections.page10 || 'None'}</strong></p>
-        <p>Round 4: <strong>${selections.page11 || 'None'}</strong></p>
-        <p>Round 5: <strong>${selections.page12 || 'None'}</strong></p>
-    `;
+    display.innerHTML =
+        `<p><strong>Player:</strong> ${name}</p>` +
+        `<p><strong>Started:</strong> ${formatTimestamp(game2StartTime)}</p>` +
+        pages.map((p, i) =>
+            `<p>Round ${i+1}: <strong>${answers[i]}</strong> &nbsp; ${formatElapsed(times[i])}</p>`
+        ).join('');
 }
 
 function resetGame() {
-    selections = { page2: null, page3: null, page4: null, page5: null, page6: null, page8: null, page9: null, page10: null, page11: null, page12: null };
+    GRID_PAGES.forEach(p => { selections[`page${p}`] = null; elapsedTimes[`page${p}`] = null; });
+    game1StartTime = null;
+    game2StartTime = null;
     document.querySelectorAll('.selected').forEach(b => b.classList.remove('selected'));
 }
 
 // Initialize
+window.addEventListener('load', () => {
+    const saved = getCookie('username');
+    if (saved) document.getElementById('username-input').value = saved;
+});
 createGrids();

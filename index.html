@@ -11,11 +11,11 @@
         <section id="page-1" class="page active">
             <div class="menu-header">
                 <h1>Game Title</h1>
-                <p>Select an option below to begin.</p>
+                <input type="text" id="username-input" placeholder="Enter your name" oninput="saveUsername()">
             </div>
             <div class="menu-list">
-                <button onclick="navigateTo(2)">Game 1</button>
-                <button onclick="navigateTo(8)">Game 2</button>
+                <button onclick="startGame(2)">Game 1</button>
+                <button onclick="startGame(8)">Game 2</button>
                 <button disabled>Reserved 2</button>
             </div>
         </section>
@@ -180,6 +180,7 @@
             </div>
         </section>
     </div>
+    <script src="db.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
