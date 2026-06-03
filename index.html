@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Web Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <section id="page-1" class="page active">
+            <div class="menu-header">
+                <h1>Game Title</h1>
+                <p>Select an option below to begin.</p>
+            </div>
+            <div class="menu-list">
+                <button onclick="navigateTo(2)">Start</button>
+                <button disabled>Option 2 (Reserved)</button>
+                <button disabled>Option 3 (Reserved)</button>
+            </div>
+        </section>
+
+        <section id="page-2" class="page">
+            <div class="page-header">
+                <h2>Page 2 Title</h2>
+                <p>Select an option below.</p>
+            </div>
+            <div class="content-area">
+                <div class="grid-container" id="grid-p2"></div>
+            </div>
+            <div class="nav-bar">
+                <button onclick="navigateTo(1)">Return</button>
+                <button onclick="goNext(2, 3)">Next</button>
+            </div>
+        </section>
+
+        <section id="page-3" class="page">
+            <div class="page-header">
+                <h2>Page 3 Title</h2>
+                <p>Select an option below.</p>
+            </div>
+            <div class="content-area">
+                <div class="grid-container" id="grid-p3"></div>
+            </div>
+            <div class="nav-bar">
+                <button onclick="navigateTo(1)">Return</button>
+                <button onclick="goNext(3, 4)">Finish</button>
+            </div>
+        </section>
+
+        <section id="page-4" class="page">
+            <div class="content-area">
+                <h2>Results</h2>
+                <div id="result-display"></div>
+            </div>
+            <div class="nav-bar">
+                <button onclick="navigateTo(1)">Return</button>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    font-family: sans-serif;
+}
+
+#game-container {
+    width: 100vw;
+    height: 100vh;
+    max-width: 461px; /* Scaled down version of 1080px for desktop viewing */
+    max-height: 1000px; /* Scaled aspect ratio */
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.page {
+    display: none;
+    height: 100%;
+    flex-direction: column;
+}
+
+.page.active { display: flex; }
+
+.page-header {
+    height: 12.5%; /* 1/8 of screen */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    text-align: center;
+    gap: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.page-header h2 {
+    font-size: 1.5rem;
+}
+
+.page-header p {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.content-area {
+    height: 75%; /* 6/8 of screen — between header (1/8) and nav-bar (1/8) */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+}
+
+.nav-bar {
+    height: 12.5%; /* 1/8 of screen */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #f0f0f0;
+    border-top: 2px solid #ddd;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.grid-container button {
+    aspect-ratio: 1;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.grid-container button.selected {
+    background-color: transparent;
+    box-shadow: inset 0 0 0 4px #28a745;
+}
+
+button {
+    padding: 15px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background: #007bff;
+    color: white;
+}
+
+button.selected { background-color: #28a745; }
+.selection-btn.selected { color: black; }
+
+/* Page 4 layout */
+#page-4 .content-area {
+    height: 87.5%; /* 7/8 of screen */
+}
+
+#page-4 .nav-bar {
+    justify-content: center;
+}
+
+/* Page 1 layout */
+#page-1 {
+    justify-content: flex-start;
+}
+
+.menu-header {
+    height: 33.33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    gap: 12px;
+}
+
+.menu-header h1 {
+    font-size: 2rem;
+}
+
+.menu-header p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.menu-list {
+    height: 50%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 12px;
+    padding: 0 20px;
+}
